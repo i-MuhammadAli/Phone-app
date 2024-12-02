@@ -8,7 +8,7 @@ export const handleCallAppData = (state = initialState, action) => {
     case "START_PHONE_CALL":
       return {
         ...state,
-        callData: [action.payload, ...state.callData],
+        callData: [action?.payload, ...state?.callData],
         callActive: true,
       };
 

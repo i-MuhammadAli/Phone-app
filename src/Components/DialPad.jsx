@@ -5,12 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { makePhoneCall } from "../store/actions/phoneCallActions";
 
-const generateUniqueId = () => {
-  const timestamp = Date.now();
-  const randomString = Math.random().toString(36).substr(2, 9);
-  return `${timestamp}-${randomString}`;
-};
-
 const DialPad = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -35,86 +29,72 @@ const DialPad = () => {
     setCurrentNumber((prev) => prev + value);
   };
 
-  const handleRemoveNumBtn = (num) => {
-    let updatedNum = num.substring(0, num.length - 1);
-    setCurrentNumber(updatedNum);
+  const handleRemoveNumBtn = () => {
+    setCurrentNumber(currentNumber.slice(0, -1));
   };
 
-  function getCurrentTime() {
+  // Clean function to format time
+  const formatTime = () => {
     const now = new Date();
-
     let hours = now.getHours();
-    let minutes = now.getMinutes();
-
+    const minutes = now.getMinutes();
     const ampm = hours >= 12 ? "PM" : "AM";
-
     hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
+    hours = hours ? hours : 12;
+    return `${hours}:${minutes < 10 ? "0" + minutes : minutes} ${ampm}`;
+  };
 
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-
-    return `${hours}:${minutes} ${ampm}`;
-  }
+  // Generate a unique ID
+  const generateUniqueId = () => {
+    return `${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+  };
 
   const handleCallBtn = () => {
-    const time = getCurrentTime();
-    const uniqueId = generateUniqueId();
-    const payload = {
-      id: uniqueId,
-      time,
-      number: currentNumber,
-    };
-
-    dispatch(makePhoneCall(payload));
-
     if (currentNumber) {
+      const uniqueId = generateUniqueId();
+      dispatch(
+        makePhoneCall({
+          id: uniqueId,
+          time: formatTime(),
+          number: currentNumber,
+        })
+      );
       navigate("/call");
     }
   };
 
   return (
-    <>
-      <div className="dialpad-container">
-        {/* Display the current number */}
-        <div className="number-display">
-          <input
-            type="text"
-            readOnly
-            value={currentNumber}
-            className="text-center number-preview"
-          />
-        </div>
-        <p className="text-primary cursor-pointer">Add Number</p>
-        {/* Dialpad grid */}
-        <div className="dialpad-grid">
-          {dialPadValues.map((value) => (
-            <button
-              key={value?.no}
-              className="dialpad-button"
-              onClick={() => handleButtonClick(value?.no)}
-            >
-              <div className="d-flex flex-column">
-                <h2 className="dialpad-num m-0 fw-normal">{value?.no}</h2>
-                <h6 className="dialpad-chars m-0">{value?.chars} </h6>
-              </div>
-            </button>
-          ))}
-          {/* Call button */}
-          <button
-            className="dialpad-button dialpad-call"
-            onClick={handleCallBtn}
-          >
-            <IoIosCall />
-          </button>
-          <button
-            onClick={() => handleRemoveNumBtn(currentNumber)}
-            disabled={!currentNumber}
-          >
-            <img src={removeBtn} alt="Delete Icon" />
-          </button>
-        </div>
+    <div className="dialpad-container">
+      <div className="number-display">
+        <input
+          type="text"
+          readOnly
+          value={currentNumber}
+          className="text-center number-preview"
+        />
       </div>
-    </>
+      <p className="text-primary cursor-pointer">Add Number</p>
+      <div className="dialpad-grid">
+        {dialPadValues.map((value) => (
+          <button
+            key={value.no}
+            className="dialpad-button"
+            onClick={() => handleButtonClick(value.no)}
+          >
+            <div className="d-flex flex-column">
+              <h2 className="dialpad-num m-0 fw-normal">{value.no}</h2>
+              <h6 className="dialpad-chars m-0">{value.chars}</h6>
+            </div>
+          </button>
+        ))}
+        <button className="dialpad-button dialpad-call" onClick={handleCallBtn}>
+          <IoIosCall />
+        </button>
+        <button onClick={handleRemoveNumBtn} disabled={!currentNumber}>
+          <img src={removeBtn} alt="Delete Icon" />
+        </button>
+      </div>
+    </div>
   );
 };
 

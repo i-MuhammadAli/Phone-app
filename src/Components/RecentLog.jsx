@@ -47,14 +47,13 @@ const RecentLog = () => {
           <h2 className="text-white my-3">Recents</h2>
         </div>
         {filteredCallLog.map(({ id, number, time }, index) => (
-          <div className="call-list" key={id || index}>
-            {/* Prefer using 'id' as key if available */}
+          <div className="call-list" key={id}>
             <div className="call-item">
               <div className="call-log-info text-start">
                 <h5 className="logs-contact-name text-danger m-0">{number}</h5>
                 <p className="call-type m-0">Phone Call Audio</p>
               </div>
-              <div className="call-details">
+              <div className="call-details d-flex justify-content-center align-items-center">
                 <span className="call-time">{time}</span>
                 <button
                   className="delete-button"

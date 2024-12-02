@@ -23,38 +23,33 @@ const TabBar = () => {
   };
 
   return (
-    <>
-      <section className="fixed-bottom tabbar-container">
-        <Row className="text-center tabbar-row ">
-          {navItems.map((item, index) => {
-            const isActive = location.pathname === item.path;
+    <section className="fixed-bott mx-auto tabbar-container ">
+      <Row className="text-center tabbar-row ">
+        {navItems.map((item, index) => {
+          const isActive = location.pathname === item.path;
 
-            return (
-              <Col key={index}>
-                <button
-                  onClick={() => item.path && handleTabBtns(item.path)}
-                  disabled={!item.path}
+          return (
+            <Col key={index} className="px-0">
+              <button
+                onClick={() => item.path && handleTabBtns(item.path)}
+                disabled={!item.path}
+              >
+                <item.icon size={22} color={isActive ? "dodgerblue" : "#333"} />
+                <p
+                  className="m-0"
+                  style={{
+                    color: isActive ? "dodgerblue" : "#333",
+                  }}
                 >
-                  <item.icon
-                    size={24}
-                    color={isActive ? "dodgerblue" : "#333"}
-                  />
-                  <p
-                    className="m-0"
-                    style={{
-                      color: isActive ? "dodgerblue" : "#333",
-                    }}
-                  >
-                    {item.label}
-                  </p>
-                </button>
-              </Col>
-            );
-          })}
-          <div className="tabbar-line mx-auto"></div>
-        </Row>
-      </section>
-    </>
+                  {item.label}
+                </p>
+              </button>
+            </Col>
+          );
+        })}
+        <div className="tabbar-line mx-auto"></div>
+      </Row>
+    </section>
   );
 };
 

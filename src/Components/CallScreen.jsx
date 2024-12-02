@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { endPhoneCall } from "../store/actions/phoneCallActions";
 import { useNavigate } from "react-router-dom";
 import { RxInfoCircled } from "react-icons/rx";
+import { useEffect } from "react";
 
 const actionButtons = [
   { icon: <HiSpeakerWave />, label: "Speaker" },
@@ -30,6 +31,14 @@ const CallScreen = () => {
   const handleCallEnd = () => {
     dispatch(endPhoneCall(() => navigate("/recent")));
   };
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      navigate("/recent");
+    }, 10000);
+
+    return () => clearTimeout(timeout);
+  }, [navigate]);
 
   return (
     <div className="callwindow">

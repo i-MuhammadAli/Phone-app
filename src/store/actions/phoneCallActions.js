@@ -1,4 +1,4 @@
-export const makePhoneCall = (item) => async (dispatch) => {
+export const makePhoneCall = (item) => (dispatch) => {
   try {
     dispatch({
       type: "START_PHONE_CALL",
@@ -12,7 +12,7 @@ export const makePhoneCall = (item) => async (dispatch) => {
   }
 };
 
-export const endPhoneCall = (onSuccess) => async (dispatch) => {
+export const endPhoneCall = (onSuccess) => (dispatch) => {
   try {
     dispatch({
       type: "END_PHONE_CALL",
@@ -29,7 +29,7 @@ export const endPhoneCall = (onSuccess) => async (dispatch) => {
   }
 };
 
-export const handleDelCall = (value) => async (dispatch) => {
+export const handleDelCall = (value) => (dispatch) => {
   try {
     dispatch({
       type: "REMOVE_CALL_LOG",

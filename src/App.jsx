@@ -19,7 +19,6 @@ function App() {
 
   return (
     <section className="parent-container">
-      {/* Render StatusBar and TabBar only when not on the /call route */}
       {!isCallRoute && <StatusBar />}
 
       <Routes>
@@ -38,7 +37,6 @@ function App() {
         <Route path="*" element={<Navigate to="/dial" replace />} />
       </Routes>
 
-      {/* Render TabBar only when not on the /call route */}
       {!isCallRoute && <TabBar />}
     </section>
   );

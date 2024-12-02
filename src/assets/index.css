@@ -102,9 +102,8 @@ button {
   align-items: center;
   background-color: black;
   color: white;
-  /* box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5); */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
   width: 430px;
-  margin: auto;
 }
 
 .tabbar-row {
@@ -387,15 +386,11 @@ button {
   color: #888;
 }
 
-.call-details {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
 .call-time {
-  font-size: 0.9rem;
+  font-size: 12px;
+  /* margin-top: 5px; */
   color: #888;
+  font-family: "Poppins", sans-serif !important;
 }
 
 .delete-button {
