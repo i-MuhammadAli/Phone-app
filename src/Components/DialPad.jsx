@@ -71,16 +71,17 @@ const DialPad = () => {
       />
       <p className="text-primary cursor-pointer mb-2">Add Number</p>
       <div className="d-grid align-items-center dialpad-grid">
-        {dialPadValues.map((value) => (
+        {dialPadValues.map((item) => (
           <button
-            key={value.no}
-            color="white"
+            key={item?.no}
             className="d-flex justify-content-center align-items-center  text-white dialpad-button"
-            onClick={() => handleButtonClick(value.no)}
+            onClick={() => handleButtonClick(item?.no)}
           >
             <div className="text-center">
-              <h2 className="m-0 fw-light">{value.no}</h2>
-              <small>{value.chars}</small>
+              <h2 className={`m-0 fw-light ${item.no === "1" ? "mb-3" : ""}`}>
+                {item?.no}
+              </h2>
+              <small>{item?.chars}</small>
             </div>
           </button>
         ))}
