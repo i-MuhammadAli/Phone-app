@@ -1,5 +1,5 @@
 import { Row, Col } from "reactstrap";
-import { FaUser } from "react-icons/fa";
+import { FaUser, FaUserCircle } from "react-icons/fa";
 import { IoIosKeypad } from "react-icons/io";
 import { TbClockHour9Filled } from "react-icons/tb";
 import { IoStar } from "react-icons/io5";
@@ -12,7 +12,7 @@ const TabBar = () => {
   const navItems = [
     { icon: IoStar, label: "Favourites" },
     { icon: TbClockHour9Filled, label: "Recents", path: "/recent" },
-    { icon: FaUser, label: "Contacts" },
+    { icon: FaUserCircle, label: "Contacts" },
     { icon: IoIosKeypad, label: "Keypad", path: "/dial" },
   ];
 
@@ -23,7 +23,7 @@ const TabBar = () => {
   };
 
   return (
-    <section className="fixed-bott mx-auto tabbar-container ">
+    <section className="d-flex justify-content-center align-items-center bg-black fixed-bottom mx-auto text-white tabbar-container ">
       <Row className="text-center tabbar-row ">
         {navItems.map((item, index) => {
           const isActive = location.pathname === item.path;
@@ -31,8 +31,8 @@ const TabBar = () => {
           return (
             <Col key={index} className="px-0">
               <button
-                onClick={() => item.path && handleTabBtns(item.path)}
-                disabled={!item.path}
+                onClick={() => item.path && handleTabBtns(item?.path)}
+                disabled={!item?.path}
               >
                 <item.icon size={22} color={isActive ? "dodgerblue" : "#333"} />
                 <p
@@ -41,13 +41,13 @@ const TabBar = () => {
                     color: isActive ? "dodgerblue" : "#333",
                   }}
                 >
-                  {item.label}
+                  {item?.label}
                 </p>
               </button>
             </Col>
           );
         })}
-        <div className="tabbar-line mx-auto"></div>
+        <div className="mx-auto bg-white tabbar-line"></div>
       </Row>
     </section>
   );

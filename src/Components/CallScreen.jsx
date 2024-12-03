@@ -23,9 +23,8 @@ const CallScreen = () => {
   const navigate = useNavigate();
   const { callData } = useSelector((state) => state?.call);
 
-  // Check if callData exists before rendering the component
   if (!callData || !callData[0]) {
-    return <div>Loading...</div>; // Or an error message if call data is missing
+    return <div>Loading...</div>;
   }
 
   const handleCallEnd = () => {
@@ -41,8 +40,8 @@ const CallScreen = () => {
   }, [navigate]);
 
   return (
-    <div className="callwindow">
-      <div className="call-info">
+    <div className="d-flex flex-column justify-content-between align-items-center callwindow">
+      <div className="d-flex flex-column align-items-start text-white call-info">
         <div className="d-flex callwindow-icon ms-auto">
           <RxInfoCircled />
         </div>
@@ -51,17 +50,18 @@ const CallScreen = () => {
           {callData[0]?.number}
         </h1>
       </div>
-      <div className="callwindow-container">
-        <div className="action-grid">
-          {actionButtons.map(({ icon, className, label }, index) => {
-            const handleClick = label === "End" ? handleCallEnd : () => {}; // Empty handler for non-functional buttons
+      <div className="d-flex justify-content-between align-items-center callwindow-button">
+        <div className="d-grid align-items-center justify-content-center action-grid">
+          {actionButtons?.map(({ icon, className, label }, index) => {
+            const handleClick = label === "End" ? handleCallEnd : () => {};
 
             return (
               <div key={index}>
                 <button
-                  className={`action-button ${className || ""}`}
+                  className={`d-grid align-items-center justify-content-center text-white action-button ${
+                    className || ""
+                  }`}
                   onClick={handleClick}
-                  aria-label={label}
                 >
                   <span className="button-icons mb-2">{icon}</span>
                 </button>

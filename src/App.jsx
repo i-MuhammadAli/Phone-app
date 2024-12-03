@@ -18,7 +18,7 @@ function App() {
   );
 
   return (
-    <section className="parent-container">
+    <section className="d-flex flex-column m-auto parent-container">
       {!isCallRoute && <StatusBar />}
 
       <Routes>

@@ -33,7 +33,6 @@ const DialPad = () => {
     setCurrentNumber(currentNumber.slice(0, -1));
   };
 
-  // Clean function to format time
   const formatTime = () => {
     const now = new Date();
     let hours = now.getHours();
@@ -44,7 +43,6 @@ const DialPad = () => {
     return `${hours}:${minutes < 10 ? "0" + minutes : minutes} ${ampm}`;
   };
 
-  // Generate a unique ID
   const generateUniqueId = () => {
     return `${Date.now()}-${Math.floor(Math.random() * 1000)}`;
   };
@@ -64,33 +62,40 @@ const DialPad = () => {
   };
 
   return (
-    <div className="dialpad-container">
-      <div className="number-display">
-        <input
-          type="text"
-          readOnly
-          value={currentNumber}
-          className="text-center number-preview"
-        />
-      </div>
-      <p className="text-primary cursor-pointer">Add Number</p>
-      <div className="dialpad-grid">
+    <div className="flex-grow-1 d-flex flex-column justify-content-center align-items-center bg-black text-white dialpad-container">
+      <input
+        type="text"
+        readOnly
+        value={currentNumber}
+        className="bg-transparent border-0 text-center fs-1 text-white number-preview"
+      />
+      <p className="text-primary cursor-pointer mb-2">Add Number</p>
+      <div className="d-grid align-items-center dialpad-grid">
         {dialPadValues.map((value) => (
           <button
             key={value.no}
-            className="dialpad-button"
+            color="white"
+            className=" d-flex justify-content-center align-items-center text-white dialpad-button"
             onClick={() => handleButtonClick(value.no)}
           >
-            <div className="d-flex flex-column">
-              <h2 className="dialpad-num m-0 fw-normal">{value.no}</h2>
-              <h6 className="dialpad-chars m-0">{value.chars}</h6>
+            <div className="text-center">
+              <h2 className="m-0">{value.no}</h2>
+              <small>{value.chars}</small>
             </div>
           </button>
         ))}
-        <button className="dialpad-button dialpad-call" onClick={handleCallBtn}>
-          <IoIosCall />
+        <button
+          className="dialpad-call"
+          onClick={handleCallBtn}
+          disabled={!currentNumber}
+        >
+          <IoIosCall color="white" />
         </button>
-        <button onClick={handleRemoveNumBtn} disabled={!currentNumber}>
+        <button
+          className="d-flex justify-content-center align-items-center"
+          onClick={handleRemoveNumBtn}
+          disabled={!currentNumber}
+        >
           <img src={removeBtn} alt="Delete Icon" />
         </button>
       </div>

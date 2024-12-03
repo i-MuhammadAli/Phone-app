@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { RiDeleteBin5Fill } from "react-icons/ri";
+import { RiDeleteBin6Line } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { handleDelCall } from "../store/actions/phoneCallActions";
 
@@ -13,22 +13,21 @@ const RecentLog = () => {
     dispatch(handleDelCall(callId));
   };
 
-  const filteredCallLog = callData.filter(
+  const filteredCallLog = callData?.filter(
     (call) => activeFilter === "All" || call.type === "Missed"
   );
 
   return (
-    <section className="recents">
-      <div className="recents-container">
-        <div className="header">
-          <span className="text-primary edit-btn">Edit</span>
-          <div className="filter-buttons mx-auto">
+    <section className="d-flex flex-column bg-black overflow-y-auto  text-white recents">
+      <div className="mx-auto recents-container">
+        <div className="d-flex align-items-center header">
+          <span className="text-primary cursor-pointer edit-btn">Edit</span>
+          <div className="d-flex mx-auto text-white filter-buttons">
             <button
               className={`filter px-4 ${
                 activeFilter === "All" ? "active" : "non-active"
               }`}
               onClick={() => setActiveFilter("All")}
-              aria-label="Show all calls"
             >
               All
             </button>
@@ -37,7 +36,6 @@ const RecentLog = () => {
                 activeFilter === "Missed" ? "active" : "non-active"
               }`}
               onClick={() => setActiveFilter("Missed")}
-              aria-label="Show missed calls"
             >
               Missed
             </button>
@@ -46,20 +44,20 @@ const RecentLog = () => {
         <div className="title px-3">
           <h2 className="text-white my-3">Recents</h2>
         </div>
-        {filteredCallLog.map(({ id, number, time }, index) => (
+        {filteredCallLog?.map(({ id, number, time }) => (
           <div className="call-list" key={id}>
-            <div className="call-item">
-              <div className="call-log-info text-start">
+            <div className="d-flex justify-content-between align-items-center call-item">
+              <div className="d-flex flex-column text-start call-log-info">
                 <h5 className="logs-contact-name text-danger m-0">{number}</h5>
                 <p className="call-type m-0">Phone Call Audio</p>
               </div>
               <div className="call-details d-flex justify-content-center align-items-center">
                 <span className="call-time">{time}</span>
                 <button
-                  className="delete-button"
+                  className="delete-button cursor-pointer"
                   onClick={() => handleDeleteCallLog(id)}
                 >
-                  <RiDeleteBin5Fill />
+                  <RiDeleteBin6Line />
                 </button>
               </div>
             </div>

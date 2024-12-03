@@ -2,6 +2,7 @@ import { IoIosWifi } from "react-icons/io";
 import arrowIcon from "../assets/icons/Arrow.svg";
 import batteryIcon from "../assets/icons/battery.svg";
 import { useState, useEffect } from "react";
+import { Row, Col } from "reactstrap";
 
 const StatusBar = () => {
   const [currentTime, setCurrentTime] = useState(
@@ -16,26 +17,23 @@ const StatusBar = () => {
           minute: "2-digit",
         })
       );
-    }, 60000); // Update the time every minute instead of every second to reduce unnecessary updates
+    }, 60000);
 
-    return () => clearInterval(timer); // Cleanup interval on unmount
+    return () => clearInterval(timer);
   }, []);
 
   return (
-    <div className="status-bar">
-      <div className="status-bar-container">
+    <section className="d-flex justify-content-center align-content-center bg-black text-white status-bar">
+      <Row className="px-4 status-bar-container">
         {/* Time */}
-        <div className="status-bar-time">
+        <Col className="d-flex align-items-center p-0 status-bar-time ">
           <span className="status-time">{currentTime}</span>
           <img src={arrowIcon} alt="Arrow Icon" />
-        </div>
+        </Col>
 
-        {/* Signal Strength, Wi-Fi, and Battery */}
-        <div className="status-bar-icon">
-          <div className="status-bar-dots" aria-hidden="true">
-            .... {/* Placeholder for dots */}
-          </div>
-          <div className="status-bar-wifi" aria-label="Wi-Fi">
+        <Col className="d-flex justify-content-end align-items-center p-0 status-bar-icon">
+          <div className="status-bar-dots">....</div>
+          <div className="d-flex align-items-center justify-content-center status-bar-wifi">
             <IoIosWifi />
           </div>
           <div className="status-bar-battery-container">
@@ -45,9 +43,9 @@ const StatusBar = () => {
               alt="Battery Icon"
             />
           </div>
-        </div>
-      </div>
-    </div>
+        </Col>
+      </Row>
+    </section>
   );
 };
 
