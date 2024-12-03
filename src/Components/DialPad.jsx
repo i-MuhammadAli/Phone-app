@@ -75,11 +75,11 @@ const DialPad = () => {
           <button
             key={value.no}
             color="white"
-            className=" d-flex justify-content-center align-items-center text-white dialpad-button"
+            className="d-flex justify-content-center align-items-center  text-white dialpad-button"
             onClick={() => handleButtonClick(value.no)}
           >
             <div className="text-center">
-              <h2 className="m-0">{value.no}</h2>
+              <h2 className="m-0 fw-light">{value.no}</h2>
               <small>{value.chars}</small>
             </div>
           </button>
