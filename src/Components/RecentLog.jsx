@@ -3,6 +3,9 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { handleDelCall } from "../store/actions/phoneCallActions";
 
+// Implement All | Missed tabs functionality. No need for that.
+// Otherwise code clarity is very good.
+
 const RecentLog = () => {
   const { callData } = useSelector((state) => state?.call);
   const dispatch = useDispatch();

@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { RxInfoCircled } from "react-icons/rx";
 import { useEffect } from "react";
 
+// Managed functionality in a good manner. Code clarity and structure is also very good.
+
 const actionButtons = [
   { icon: <HiSpeakerWave />, label: "Speaker" },
   { icon: <BsCameraVideoFill />, label: "FaceTime" },

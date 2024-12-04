@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { makePhoneCall } from "../store/actions/phoneCallActions";
 
+// Code clarity is quite good. Made proper functions and managed functionality in a good manner.
+
 const DialPad = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();

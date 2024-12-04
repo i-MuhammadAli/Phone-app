@@ -5,6 +5,8 @@ import { routes } from "./routes";
 import TabBar from "./Components/TabBar";
 import CallScreen from "./Components/CallScreen";
 
+// Routing and app logic mixed up. App logic must be placed in a separate component for better structure and  code clarity.
+
 function App() {
   const location = useLocation();
   const { callActive } = useSelector((state) => state?.call);
