@@ -5,19 +5,17 @@ import { useState, useEffect } from "react";
 import { Row, Col } from "reactstrap";
 
 const StatusBar = () => {
-  const [currentTime, setCurrentTime] = useState(
-    new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
-  );
+  const [currentTime, setCurrentTime] = useState("");
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTime(
-        new Date().toLocaleTimeString([], {
-          hour: "2-digit",
-          minute: "2-digit",
-        })
-      );
-    }, 60000);
+    const updateTime = () => {
+      const hours = new Date().getHours() % 12 || 12;
+      const minutes = new Date().getMinutes().toString().padStart(2, "0");
+      setCurrentTime(`${hours}:${minutes}`);
+    };
+
+    updateTime();
+    const timer = setInterval(updateTime, 60000);
 
     return () => clearInterval(timer);
   }, []);
@@ -27,7 +25,7 @@ const StatusBar = () => {
       <Row className="px-4 status-bar-container">
         {/* Time */}
         <Col className="d-flex align-items-center p-0 status-bar-time ">
-          <span className="status-time">{currentTime}</span>
+          <span className=" status-time">{currentTime}</span>
           <img src={arrowIcon} alt="Arrow Icon" />
         </Col>
 
