@@ -5,6 +5,8 @@ import { TbClockHour9Filled } from "react-icons/tb";
 import { IoStar } from "react-icons/io5";
 import { useNavigate, useLocation } from "react-router-dom";
 
+// Code clarity is very good.
+
 const TabBar = () => {
   const navigate = useNavigate();
   const location = useLocation();

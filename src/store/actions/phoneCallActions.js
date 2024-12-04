@@ -1,3 +1,5 @@
+// Actions used in a good maaner. Proper error handling. Code clarity is very good.
+
 export const makePhoneCall = (item) => (dispatch) => {
   try {
     dispatch({

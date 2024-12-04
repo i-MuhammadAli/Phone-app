@@ -4,6 +4,8 @@ import batteryIcon from "../assets/icons/battery.svg";
 import { useState, useEffect } from "react";
 import { Row, Col } from "reactstrap";
 
+// Code clarity is very good. Managed functionality in a good manner.
+
 const StatusBar = () => {
   const [currentTime, setCurrentTime] = useState("");
 

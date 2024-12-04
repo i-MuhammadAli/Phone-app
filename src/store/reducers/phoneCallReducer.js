@@ -3,6 +3,9 @@ const initialState = {
   callActive: false,
 };
 
+// Properly handled state
+// Unnecessary use of callActice
+
 export const handleCallAppData = (state = initialState, action) => {
   switch (action?.type) {
     case "START_PHONE_CALL":
