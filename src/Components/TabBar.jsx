@@ -1,5 +1,5 @@
 import { Row, Col } from "reactstrap";
-import { FaUser, FaUserCircle } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 import { IoIosKeypad } from "react-icons/io";
 import { TbClockHour9Filled } from "react-icons/tb";
 import { IoStar } from "react-icons/io5";
@@ -23,8 +23,8 @@ const TabBar = () => {
   };
 
   return (
-    <section className="d-flex justify-content-center align-items-center bg-black fixed-bottom mx-auto text-white tabbar-container ">
-      <Row className="text-center tabbar-row ">
+    <section className="d-flex justify-content-center align-items-center bg-black text-white w-100 tabbar-container pb-1">
+      <Row className="d-flex justify-content-between align-items-center text-center w-100 tabbar-row">
         {navItems.map((item, index) => {
           const isActive = location.pathname === item.path;
 
@@ -34,9 +34,14 @@ const TabBar = () => {
                 onClick={() => item.path && handleTabBtns(item?.path)}
                 disabled={!item?.path}
               >
-                <item.icon size={22} color={isActive ? "dodgerblue" : "#333"} />
+                <div className="tabbar-icon">
+                  <item.icon
+                    size={22}
+                    color={isActive ? "dodgerblue" : "#333"}
+                  />
+                </div>
                 <p
-                  className="m-0"
+                  className="tabbar-label m-0"
                   style={{
                     color: isActive ? "dodgerblue" : "#333",
                   }}
@@ -47,7 +52,6 @@ const TabBar = () => {
             </Col>
           );
         })}
-        <div className="mx-auto bg-white tabbar-line"></div>
       </Row>
     </section>
   );

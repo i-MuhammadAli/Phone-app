@@ -1,8 +1,8 @@
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import StatusBar from "./Components/StatusBar";
-import TabBar from "./Components/TabBar";
 import { routes } from "./routes";
+import TabBar from "./Components/TabBar";
 import CallScreen from "./Components/CallScreen";
 
 function App() {
@@ -14,7 +14,11 @@ function App() {
   const callRoute = callActive ? (
     <Route key="/call" path="/call" element={<CallScreen />} />
   ) : (
-    <Route key="/call" path="/call" element={<Navigate to="/dial" replace />} />
+    <Route
+      key="/call"
+      path="/call"
+      element={<Navigate to="/recent" replace />}
+    />
   );
 
   return (
@@ -24,7 +28,10 @@ function App() {
       <Routes>
         {routes.map(({ path, component }, index) => {
           if (!path || !component) {
-            console.error("Invalid route configuration", { path, component });
+            console.error("Invalid route configuration", {
+              path,
+              component,
+            });
             return null;
           }
           return path === "/call" ? (

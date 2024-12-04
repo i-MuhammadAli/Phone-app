@@ -23,10 +23,6 @@ const CallScreen = () => {
   const navigate = useNavigate();
   const { callData } = useSelector((state) => state?.call);
 
-  if (!callData || !callData[0]) {
-    return <div>Loading...</div>;
-  }
-
   const handleCallEnd = () => {
     dispatch(endPhoneCall(() => navigate("/recent")));
   };
@@ -41,8 +37,8 @@ const CallScreen = () => {
 
   return (
     <div className="d-flex flex-column justify-content-between align-items-center callwindow">
-      <div className="d-flex flex-column align-items-start text-white call-info">
-        <div className="d-flex callwindow-icon ms-auto">
+      <div className="d-flex flex-column align-items-center text-white w-100 call-info">
+        <div className="d-flex align-self-end callwindow-icon">
           <RxInfoCircled />
         </div>
         <div className="status">calling mobile...</div>

@@ -14,7 +14,7 @@ const RecentLog = () => {
   };
 
   const filteredCallLog = callData?.filter(
-    (call) => activeFilter === "All" || call.type === "Missed"
+    (call) => activeFilter === "All" || call?.type === "Missed"
   );
 
   return (

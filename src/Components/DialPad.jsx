@@ -26,7 +26,11 @@ const DialPad = () => {
   ];
 
   const handleButtonClick = (value) => {
-    setCurrentNumber((prev) => prev + value);
+    if (currentNumber.length < 15) {
+      setCurrentNumber((prev) => prev + value);
+    } else {
+      alert("Phone number cannot exceed 15 characters.");
+    }
   };
 
   const handleRemoveNumBtn = () => {
@@ -62,29 +66,28 @@ const DialPad = () => {
   };
 
   return (
-    <div className="flex-grow-1 d-flex flex-column justify-content-center align-items-center bg-black text-white dialpad-container">
-      <input
-        type="text"
-        readOnly
-        value={currentNumber}
-        className="bg-transparent border-0 text-center fs-1 text-white number-preview"
-      />
-      <p className="text-primary cursor-pointer mb-2">Add Number</p>
-      <div className="d-grid align-items-center dialpad-grid">
+    <section className="d-flex flex-column align-items-center justify-content-around bg-black text-white dialpad-container">
+      <div className="d-flex flex-column align-items-center justify-content-between my-auto dialpad-number">
+        <input
+          type="text"
+          readOnly
+          value={currentNumber}
+          className="bg-transparent border-0 text-center fs-1 text-white number-preview"
+        />
+        <p className="text-primary my-1 cursor-pointer">Add Number</p>
+      </div>
+      <div className="d-grid align-items-center justify-content-center mb-2 dialpad-grid">
         {dialPadValues.map((item) => (
           <button
             key={item?.no}
-            className="d-flex justify-content-center align-items-center  text-white dialpad-button"
+            className="d-flex flex-column justify-content-center align-items-center  text-white dialpad-button"
             onClick={() => handleButtonClick(item?.no)}
           >
-            <div className="text-center">
-              <h2 className={`m-0 fw-light ${item.no === "1" ? "mb-3" : ""}`}>
-                {item?.no}
-              </h2>
-              <small>{item?.chars}</small>
-            </div>
+            <h3 className="m-0 fw-light">{item?.no}</h3>
+            <p className="m-0">{item?.chars}</p>
           </button>
         ))}
+        <div className="text-center"></div>
         <button
           className="dialpad-call"
           onClick={handleCallBtn}
@@ -100,7 +103,7 @@ const DialPad = () => {
           <img src={removeBtn} alt="Delete Icon" />
         </button>
       </div>
-    </div>
+    </section>
   );
 };
 
