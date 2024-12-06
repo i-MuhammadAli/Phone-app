@@ -4,6 +4,9 @@ import removeBtn from "../assets/icons/delete-icon.svg";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { makePhoneCall } from "../store/actions/phoneCallActions";
+import { Layout } from "../layout";
+
+// Code clarity is quite good. Made proper functions and managed functionality in a good manner.
 
 // Code clarity is quite good. Made proper functions and managed functionality in a good manner.
 
@@ -68,44 +71,46 @@ const DialPad = () => {
   };
 
   return (
-    <section className="d-flex flex-column align-items-center justify-content-around bg-black text-white dialpad-container">
-      <div className="d-flex flex-column align-items-center justify-content-between my-auto dialpad-number">
-        <input
-          type="text"
-          readOnly
-          value={currentNumber}
-          className="bg-transparent border-0 text-center fs-1 text-white number-preview"
-        />
-        <p className="text-primary my-1 cursor-pointer">Add Number</p>
-      </div>
-      <div className="d-grid align-items-center justify-content-center mb-2 dialpad-grid">
-        {dialPadValues.map((item) => (
+    <Layout>
+      <section className="d-flex flex-column align-items-center justify-content-around overflow-y-auto overflow-x-hidden bg-black text-white dialpad-container">
+        <div className="d-flex flex-column align-items-center justify-content-between my-auto dialpad-number">
+          <input
+            type="text"
+            readOnly
+            value={currentNumber}
+            className="bg-transparent border-0 text-center fs-1 text-white number-preview"
+          />
+          <p className="text-primary my-1 cursor-pointer">Add Number</p>
+        </div>
+        <div className="d-grid align-items-center justify-content-center mb-2 dialpad-grid">
+          {dialPadValues.map((item) => (
+            <button
+              key={item?.no}
+              className="d-flex flex-column justify-content-center align-items-center rounded-circle text-white dialpad-button"
+              onClick={() => handleButtonClick(item?.no)}
+            >
+              <h3 className="m-0 fw-light">{item?.no}</h3>
+              <p className="m-0">{item?.chars}</p>
+            </button>
+          ))}
+          <div className="text-center"></div>
           <button
-            key={item?.no}
-            className="d-flex flex-column justify-content-center align-items-center  text-white dialpad-button"
-            onClick={() => handleButtonClick(item?.no)}
+            className="rounded-circle dialpad-call"
+            onClick={handleCallBtn}
+            disabled={!currentNumber}
           >
-            <h3 className="m-0 fw-light">{item?.no}</h3>
-            <p className="m-0">{item?.chars}</p>
+            <IoIosCall color="white" />
           </button>
-        ))}
-        <div className="text-center"></div>
-        <button
-          className="dialpad-call"
-          onClick={handleCallBtn}
-          disabled={!currentNumber}
-        >
-          <IoIosCall color="white" />
-        </button>
-        <button
-          className="d-flex justify-content-center align-items-center"
-          onClick={handleRemoveNumBtn}
-          disabled={!currentNumber}
-        >
-          <img src={removeBtn} alt="Delete Icon" />
-        </button>
-      </div>
-    </section>
+          <button
+            className="d-flex justify-content-center align-items-center"
+            onClick={handleRemoveNumBtn}
+            disabled={!currentNumber}
+          >
+            <img src={removeBtn} alt="Delete Icon" />
+          </button>
+        </div>
+      </section>
+    </Layout>
   );
 };
 

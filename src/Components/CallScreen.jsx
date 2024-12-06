@@ -3,8 +3,7 @@ import { HiSpeakerWave } from "react-icons/hi2";
 import { IoIosKeypad } from "react-icons/io";
 import { IoPersonAddSharp } from "react-icons/io5";
 import { MdCallEnd } from "react-icons/md";
-import { useDispatch, useSelector } from "react-redux";
-import { endPhoneCall } from "../store/actions/phoneCallActions";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { RxInfoCircled } from "react-icons/rx";
 import { useEffect } from "react";
@@ -21,12 +20,11 @@ const actionButtons = [
 ];
 
 const CallScreen = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { callData } = useSelector((state) => state?.call);
 
   const handleCallEnd = () => {
-    dispatch(endPhoneCall(() => navigate("/recent")));
+    navigate("/recent");
   };
 
   useEffect(() => {
@@ -38,7 +36,7 @@ const CallScreen = () => {
   }, [navigate]);
 
   return (
-    <div className="d-flex flex-column justify-content-between align-items-center callwindow">
+    <div className="d-flex flex-column justify-content-between align-items-center mx-auto callwindow">
       <div className="d-flex flex-column align-items-center text-white w-100 call-info">
         <div className="d-flex align-self-end callwindow-icon">
           <RxInfoCircled />
@@ -49,7 +47,7 @@ const CallScreen = () => {
         </h1>
       </div>
       <div className="d-flex justify-content-between align-items-center callwindow-button">
-        <div className="d-grid align-items-center justify-content-center action-grid">
+        <div className="d-grid align-items-center justify-content-center w-100 action-grid">
           {actionButtons?.map(({ icon, className, label }, index) => {
             const handleClick = label === "End" ? handleCallEnd : () => {};
 

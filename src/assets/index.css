@@ -7,7 +7,30 @@ html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* background-color: black !important; */
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #888 transparent;
 }
 
 .parent-container {
@@ -24,17 +47,16 @@ button {
   cursor: pointer;
 }
 
-/* ---------- STATUS BAR STYLES ---------- */
-
-.status-bar-container {
-  width: 100%;
+.cursor-pointer {
+  cursor: pointer;
 }
+
+/* ---------- STATUS BAR STYLES ---------- */
 
 .status-time {
   font-weight: 500;
   font-family: "Poppins", sans-serif;
   font-size: 14px;
-  width: 70px;
 }
 
 .status-bar-dots {
@@ -69,10 +91,6 @@ button {
   outline: none;
 }
 
-.cursor-pointer {
-  cursor: pointer;
-}
-
 .dialpad-grid {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(4, auto);
@@ -83,7 +101,6 @@ button {
 
 .dialpad-button {
   background-color: #333;
-  border-radius: 50%;
   width: 70px;
   height: 70px;
   transition: transform 0.2s ease, background-color 0.2s ease;
@@ -95,7 +112,6 @@ button {
 
 /* Call Button */
 .dialpad-call {
-  border-radius: 50%;
   width: 70px;
   height: 70px;
   transition: transform 0.2s ease, background-color 0.2s ease;
@@ -121,6 +137,7 @@ button {
 
 .callwindow {
   height: 100vh;
+  width: 430px;
   padding: 20px;
   background: radial-gradient(at top left, #66676b, #353a40);
 }
@@ -144,7 +161,6 @@ button {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, auto);
   gap: 2rem 3rem;
-  width: 100%;
 }
 
 .action-button {
@@ -179,11 +195,6 @@ button {
   height: 100%;
   padding: 20px;
 }
-
-.recents-container {
-  width: 100%;
-}
-
 /* Header Styling */
 
 .edit-btn {
@@ -196,6 +207,8 @@ button {
   background-color: #1c1c1e;
   border-radius: 7px;
 }
+
+/*style .filter is used for two buttons */
 
 .filter {
   text-align: center;
@@ -215,6 +228,7 @@ button {
 .filter.non-active {
   background-color: transparent;
 }
+
 /* Title Styling */
 .title {
   border-bottom: 1px solid #3333337c;
@@ -245,8 +259,6 @@ button {
 }
 
 .delete-button {
-  background: none;
-  border: none;
   color: red;
   font-size: 1.5rem;
 }
@@ -257,6 +269,9 @@ button {
 
 @media (max-width: 450.98px) {
   .parent-container {
+    width: auto;
+  }
+  .callwindow {
     width: auto;
   }
 }
