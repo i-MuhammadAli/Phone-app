@@ -14,23 +14,6 @@ export const makePhoneCall = (item) => (dispatch) => {
   }
 };
 
-export const endPhoneCall = (onSuccess) => (dispatch) => {
-  try {
-    dispatch({
-      type: "END_PHONE_CALL",
-    });
-
-    if (onSuccess && typeof onSuccess === "function") {
-      onSuccess();
-    }
-  } catch (err) {
-    console.error(
-      "Error ending phone call:",
-      err.message || "Unknown error occurred"
-    );
-  }
-};
-
 export const handleDelCall = (value) => (dispatch) => {
   try {
     dispatch({

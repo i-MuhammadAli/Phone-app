@@ -1,6 +1,5 @@
 const initialState = {
   callData: [],
-  callActive: false,
 };
 
 // Properly handled state
@@ -12,19 +11,14 @@ export const handleCallAppData = (state = initialState, action) => {
       return {
         ...state,
         callData: [action?.payload, ...state?.callData],
-        callActive: true,
-      };
-
-    case "END_PHONE_CALL":
-      return {
-        ...state,
-        callActive: false,
       };
 
     case "REMOVE_CALL_LOG":
       return {
         ...state,
-        callData: state.callData.filter((call) => call?.id !== action?.payload),
+        callData: state?.callData?.filter(
+          (call) => call?.id !== action?.payload
+        ),
       };
 
     default:

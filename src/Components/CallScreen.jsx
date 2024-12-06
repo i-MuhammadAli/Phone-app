@@ -3,8 +3,7 @@ import { HiSpeakerWave } from "react-icons/hi2";
 import { IoIosKeypad } from "react-icons/io";
 import { IoPersonAddSharp } from "react-icons/io5";
 import { MdCallEnd } from "react-icons/md";
-import { useDispatch, useSelector } from "react-redux";
-import { endPhoneCall } from "../store/actions/phoneCallActions";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { RxInfoCircled } from "react-icons/rx";
 import { useEffect } from "react";
@@ -21,12 +20,11 @@ const actionButtons = [
 ];
 
 const CallScreen = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { callData } = useSelector((state) => state?.call);
 
   const handleCallEnd = () => {
-    dispatch(endPhoneCall(() => navigate("/recent")));
+    navigate("/recent");
   };
 
   useEffect(() => {
