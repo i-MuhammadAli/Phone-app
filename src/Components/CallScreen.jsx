@@ -36,7 +36,7 @@ const CallScreen = () => {
   }, [navigate]);
 
   return (
-    <div className="d-flex flex-column justify-content-between align-items-center callwindow">
+    <div className="d-flex flex-column justify-content-between align-items-center mx-auto callwindow">
       <div className="d-flex flex-column align-items-center text-white w-100 call-info">
         <div className="d-flex align-self-end callwindow-icon">
           <RxInfoCircled />
