@@ -22,7 +22,7 @@ const RecentLog = () => {
 
   return (
     <section className="d-flex flex-column bg-black overflow-y-auto  text-white recents">
-      <div className="mx-auto recents-container">
+      <div className="mx-auto w-100 recents-container">
         <div className="d-flex align-items-center header">
           <span className="text-primary cursor-pointer edit-btn">Edit</span>
           <div className="d-flex mx-auto text-white filter-buttons">
@@ -57,7 +57,7 @@ const RecentLog = () => {
               <div className="call-details d-flex justify-content-center align-items-center">
                 <span className="call-time">{time}</span>
                 <button
-                  className="delete-button cursor-pointer"
+                  className=" delete-button cursor-pointer"
                   onClick={() => handleDeleteCallLog(id)}
                 >
                   <RiDeleteBin6Line />

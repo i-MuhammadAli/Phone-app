@@ -68,7 +68,7 @@ const DialPad = () => {
   };
 
   return (
-    <section className="d-flex flex-column align-items-center justify-content-around bg-black text-white dialpad-container">
+    <section className="d-flex flex-column align-items-center justify-content-around overflow-y-auto overflow-x-hidden bg-black text-white dialpad-container">
       <div className="d-flex flex-column align-items-center justify-content-between my-auto dialpad-number">
         <input
           type="text"
@@ -82,7 +82,7 @@ const DialPad = () => {
         {dialPadValues.map((item) => (
           <button
             key={item?.no}
-            className="d-flex flex-column justify-content-center align-items-center  text-white dialpad-button"
+            className="d-flex flex-column justify-content-center align-items-center rounded-circle text-white dialpad-button"
             onClick={() => handleButtonClick(item?.no)}
           >
             <h3 className="m-0 fw-light">{item?.no}</h3>
@@ -91,7 +91,7 @@ const DialPad = () => {
         ))}
         <div className="text-center"></div>
         <button
-          className="dialpad-call"
+          className="rounded-circle dialpad-call"
           onClick={handleCallBtn}
           disabled={!currentNumber}
         >

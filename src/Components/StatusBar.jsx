@@ -24,7 +24,7 @@ const StatusBar = () => {
 
   return (
     <section className="d-flex justify-content-center align-content-center bg-black text-white status-bar">
-      <Row className="px-4 status-bar-container">
+      <Row className="px-4 w-100 status-bar-container">
         {/* Time */}
         <Col className="d-flex align-items-center p-0 status-bar-time ">
           <span className=" status-time">{currentTime}</span>

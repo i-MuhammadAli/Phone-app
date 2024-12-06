@@ -49,7 +49,7 @@ const CallScreen = () => {
         </h1>
       </div>
       <div className="d-flex justify-content-between align-items-center callwindow-button">
-        <div className="d-grid align-items-center justify-content-center action-grid">
+        <div className="d-grid align-items-center justify-content-center w-100 action-grid">
           {actionButtons?.map(({ icon, className, label }, index) => {
             const handleClick = label === "End" ? handleCallEnd : () => {};
 
